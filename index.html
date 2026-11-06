@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>LaswI Game — 點開就玩，不用等</title>
+<meta name="description" content="LaswI Game 是 LaswI Studio 旗下的遊戲品牌，提供網頁端與安卓小遊戲。點開就玩，不用等。" />
+<meta name="theme-color" content="#0F0D1A" />
+<link rel="icon" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ==================================================================
+     ① 固定導航
+     ================================================================== -->
+<header class="nav" id="nav">
+  <div class="nav__shell">
+    <a class="brand" href="#top" aria-label="LaswI Game">
+      <img class="brand__logo" src="logo.png" alt="LaswI Game" width="40" height="40" />
+      <span class="brand__mark hollow">LaswI</span>
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="主導航">
+      <a href="#top" data-i18n="nav.home">首頁</a>
+      <a href="#games" data-i18n="nav.games">遊戲</a>
+      <a href="#games" data-filter="web" data-i18n="nav.web">Web 網遊</a>
+      <a href="#games" data-filter="android" data-i18n="nav.android">Android 手遊</a>
+      <a href="#contact" data-i18n="nav.contact">聯繫</a>
+    </nav>
+
+    <div class="nav__tail">
+      <div class="seg seg--lang" id="langSeg" role="group" aria-label="Language">
+        <button type="button" data-lang="zh-Hans" aria-selected="false">简体中文</button>
+        <button type="button" data-lang="zh-Hant" aria-selected="true">繁體中文</button>
+        <button type="button" data-lang="en" aria-selected="false">English</button>
+      </div>
+      <span class="badge-version" id="navVersion">v0.1.0</span>
+      <button class="nav__burger" id="navBurger" type="button" aria-label="選單" aria-expanded="false" aria-controls="navLinks">
+        <span class="material-symbols-rounded">menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ==================================================================
+     ② Hero 首屏
+     ================================================================== -->
+<section class="hero" id="top">
+  <div class="hero__bg" aria-hidden="true">
+    <span class="hero__glow hero__glow--a"></span>
+    <span class="hero__glow hero__glow--b"></span>
+    <span class="hero__glow hero__glow--c"></span>
+    <span class="hero__grid"></span>
+  </div>
+
+  <div class="hero__collage" id="heroCollage" aria-hidden="true">
+    <!-- 搖桿：圓形底座 + 短柱 + 頂部圓球 -->
+    <svg class="stick" viewBox="0 0 120 120" fill="none">
+      <circle cx="60" cy="60" r="52" stroke="rgba(179,136,255,.55)" stroke-width="2" stroke-dasharray="4 8" />
+      <circle cx="60" cy="76" r="26" fill="rgba(57,255,136,.14)" stroke="rgba(57,255,136,.55)" stroke-width="2" />
+      <rect x="55" y="34" width="10" height="34" rx="5" fill="rgba(240,238,255,.55)" />
+      <circle cx="60" cy="30" r="12" fill="#FFE14D" opacity=".85" />
+    </svg>
+
+    <!-- 彩色按鍵 A / B / X / Y -->
+    <div class="abxy">
+      <span style="--c:#39FF88;--d:0s"></span>
+      <span style="--c:#FF4D9D;--d:.18s"></span>
+      <span style="--c:#FFE14D;--d:.36s"></span>
+      <span style="--c:#B388FF;--d:.54s"></span>
+    </div>
+  </div>
+
+  <div class="hero__inner">
+    <div class="hero__copy">
+      <p class="kicker mono">LaswI Studio · <span data-i18n="hero.kicker">旗下遊戲品牌</span></p>
+      <h1 class="hero__title hollow">LASWI<br />GAME</h1>
+      <p class="hero__tagline" data-i18n="hero.tagline">點開就玩，不用等</p>
+      <p class="hero__lead" data-i18n="hero.lead">網頁端與安卓小遊戲，挑一個，五秒後你已經在玩了。</p>
+      <div class="hero__cta">
+        <a class="btn btn--solid" href="#games">
+          <span data-i18n="hero.play">開始玩</span>
+          <span class="material-symbols-rounded">play_arrow</span>
+        </a>
+        <a class="btn btn--outline" href="#games">
+          <span data-i18n="hero.browse">瀏覽全部</span>
+          <span class="material-symbols-rounded">arrow_downward</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__stage" id="heroStage">
+      <svg class="cab" viewBox="0 0 560 700" role="img" aria-label="街機框體鏤空與像素遊戲畫面">
+        <defs>
+          <linearGradient id="cabGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#39FF88" />
+            <stop offset="48%" stop-color="#B388FF" />
+            <stop offset="100%" stop-color="#FF4D9D" />
+          </linearGradient>
+          <linearGradient id="cabGrad2" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0%" stop-color="#FFE14D" stop-opacity=".0" />
+            <stop offset="100%" stop-color="#FFE14D" stop-opacity=".55" />
+          </linearGradient>
+          <!-- 框體鏤空：外輪廓白色，內面板與控制區挖空 -->
+          <mask id="cabMask" maskUnits="userSpaceOnUse" x="0" y="0" width="560" height="700">
+            <path d="M28 668 L28 214 C28 132 96 74 180 58 L380 58 C464 74 532 132 532 214 L532 668 C532 686 518 700 500 700 L60 700 C42 700 28 686 28 668 Z" fill="#fff" />
+            <rect x="70" y="150" width="420" height="352" rx="44" fill="#000" />
+            <rect x="96" y="548" width="150" height="86" rx="28" fill="#000" />
+            <circle cx="392" cy="572" r="21" fill="#000" />
+            <circle cx="448" cy="600" r="21" fill="#000" />
+            <circle cx="336" cy="606" r="21" fill="#000" />
+          </mask>
+          <clipPath id="cabScreen">
+            <rect x="70" y="150" width="420" height="352" rx="44" />
+          </clipPath>
+        </defs>
+
+        <g mask="url(#cabMask)">
+          <rect x="0" y="0" width="560" height="700" fill="url(#cabGrad)" />
+          <rect x="0" y="0" width="560" height="260" fill="#0F0D1A" opacity=".22" />
+          <rect x="0" y="520" width="560" height="180" fill="url(#cabGrad2)" opacity=".5" />
+        </g>
+
+        <!-- 螢幕：像素方塊組成的遊戲畫面 -->
+        <g clip-path="url(#cabScreen)">
+          <rect x="70" y="150" width="420" height="352" fill="#120E22" />
+          <g id="cabPixels" class="cab__pixels"></g>
+          <rect x="100" y="452" width="360" height="6" rx="3" fill="#39FF88" opacity=".45" />
+          <circle cx="430" cy="196" r="7" fill="#FF4D9D" opacity=".85" />
+        </g>
+      </svg>
+      <span class="hero__corner mono">LaswI Game</span>
+    </div>
+  </div>
+
+  <div class="hero__scroll mono" aria-hidden="true">
+    <span data-i18n="hero.scroll">向下滾動</span>
+    <i></i>
+  </div>
+</section>
+
+<!-- ==================================================================
+     ③ 遊戲列表 — Live Tile 磁貼
+     ================================================================== -->
+<section class="section games" id="games">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 class="display hollow">GAMES<span class="display__cn" data-i18n="games.cn">遊戲</span></h2>
+      <p class="section-sub mono" id="gamesSub">4 款遊戲 · 點開即玩</p>
+    </div>
+
+    <div class="games__bar reveal">
+      <div class="seg seg--filter" id="gameFilter" role="tablist" aria-label="平台篩選"></div>
+      <span class="games__hint mono" data-i18n="games.hint">懸停可查看詳情 · 點擊即開玩</span>
+    </div>
+
+    <div class="tiles" id="tiles"></div>
+  </div>
+</section>
+
+<!-- ==================================================================
+     ④ 分類說明（淺色）
+     ================================================================== -->
+<section class="section section--light platforms" id="platforms">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 class="display hollow">PLATFORMS<span class="display__cn" data-i18n="plat.cn">平台</span></h2>
+      <p class="section-sub mono" data-i18n="plat.sub">兩種玩法，同一種痛快</p>
+    </div>
+
+    <div class="plat-grid">
+      <article class="plat plat--web reveal" style="--i:0">
+        <span class="plat__icon"><span class="material-symbols-rounded">public</span></span>
+        <h3 class="plat__title" data-i18n="plat.web.title">Web 網遊</h3>
+        <p class="plat__desc" data-i18n="plat.web.desc">打開網頁即玩，無需下載。</p>
+        <button class="btn btn--tonal btn--small" type="button" data-jump="web">
+          <span data-i18n="plat.web.cta">查看 Web 網遊</span>
+          <span class="material-symbols-rounded">arrow_forward</span>
+        </button>
+        <span class="plat__deco" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i>
+        </span>
+      </article>
+
+      <article class="plat plat--android reveal" style="--i:1">
+        <span class="plat__icon"><span class="material-symbols-rounded">android</span></span>
+        <h3 class="plat__title" data-i18n="plat.android.title">Android 手遊</h3>
+        <p class="plat__desc" data-i18n="plat.android.desc">下載安裝到手機，隨時開一局。</p>
+        <button class="btn btn--tonal btn--small" type="button" data-jump="android">
+          <span data-i18n="plat.android.cta">查看 Android 手遊</span>
+          <span class="material-symbols-rounded">arrow_forward</span>
+        </button>
+        <span class="plat__deco" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i>
+        </span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================================
+     ⑤ 玩法說明（深色三欄）
+     ================================================================== -->
+<section class="section howto" id="howto">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 class="display hollow">HOW TO PLAY<span class="display__cn" data-i18n="howto.cn">怎麼玩</span></h2>
+    </div>
+
+    <ol class="steps">
+      <li class="step reveal" style="--i:0">
+        <span class="step__num mono">01</span>
+        <span class="step__icon material-symbols-rounded">sports_esports</span>
+        <h3 data-i18n="howto.s1.t">選一個遊戲</h3>
+        <p data-i18n="howto.s1.d">瀏覽遊戲列表，挑一個你喜歡的。</p>
+      </li>
+      <li class="step reveal" style="--i:1">
+        <span class="step__num mono">02</span>
+        <span class="step__icon material-symbols-rounded">touch_app</span>
+        <h3 data-i18n="howto.s2.t">點開就玩</h3>
+        <p data-i18n="howto.s2.d">Web 網遊直接在瀏覽器玩，Android 手遊點擊下載。</p>
+      </li>
+      <li class="step reveal" style="--i:2">
+        <span class="step__num mono">03</span>
+        <span class="step__icon material-symbols-rounded">sentiment_satisfied</span>
+        <h3 data-i18n="howto.s3.t">玩得開心</h3>
+        <p data-i18n="howto.s3.d">遇到問題，寫封郵件給我們。</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ==================================================================
+     ⑥ 版本與更新（淺色）
+     ================================================================== -->
+<section class="section section--light version" id="version">
+  <div class="wrap version__grid">
+    <div class="version__left reveal">
+      <p class="label mono" data-i18n="ver.label">當前版本</p>
+      <p class="version__num hollow" id="versionNum">v0.1.0</p>
+      <p class="version__date mono" id="versionDate">更新於 2026-11-06</p>
+    </div>
+    <div class="version__right reveal" style="--i:1">
+      <p class="version__note mono" data-i18n="ver.note">遊戲持續更新中，歡迎郵件反饋問題。</p>
+      <ul class="mail-list" id="versionMails"></ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ==================================================================
+     ⑦ 頁腳
+     ================================================================== -->
+<footer class="footer" id="contact">
+  <div class="wrap">
+    <h2 class="footer__display hollow">LET'S PLAY</h2>
+    <div class="footer__mails" id="footerMails"></div>
+    <p class="footer__note" data-i18n="footer.note">遊戲反饋、合作或授權，歡迎郵件聯繫。</p>
+  </div>
+  <div class="wrap footer__bottom">
+    <span class="mono">© LaswI Studio / LaswI Game · <b id="footerVersion">v0.1.0</b></span>
+    <span class="mono" data-i18n="footer.made">HTML · CSS · JavaScript，無框架</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
